@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+.contact{
+    margin: 0px 300px;
+    width: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+form{
+    width: auto;
+}
+
+#email{
+    margin-bottom: 10px; 
+}
+
+#email, #msg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+}
+#msg{
+    margin-bottom: 10px;
+}
+textarea{
+    resize: none;
+}

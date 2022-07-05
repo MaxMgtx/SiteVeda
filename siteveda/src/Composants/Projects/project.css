@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+.project{
+    margin: 0px 300px;
+    width: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.images{
+    display: flex;
+    justify-content: space-around;
+}
+.images>div{
+    width: 300px;
+    height: 300px;
+    margin-right: 10px;  
+}
+#i1{
+    background-image: url('quartet.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;  
+}
+#i2{
+    background-image: url("ann2.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+#i3{
+    background-image: url("lumens.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#titre{
+    text-decoration: none;
+}
+
+.groupe{
+    text-align: center;
+    margin-top: 50%;
+    font-size: larger;
+    background: 
+    linear-gradient(rgb(0, 0, 0) 0 0) 
+    left /100% var(--d, 0%) no-repeat;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.link{
+    text-decoration: none;
+}
+
+#i1:hover .groupe{
+    background-position: bottom;
+    background-color: rgb(71, 93, 67);
+    color: #fff;
+    opacity: 0.9;
+    
+}
+#i2:hover .groupe{
+    background-position: bottom;
+    background-color: rgb(71, 93, 67);
+    color: #fff;
+    opacity: 0.9;
+}
+#i3:hover .groupe{
+    background-position: bottom;
+    background-color: rgb(71, 93, 67);
+    color: #fff;
+    opacity: 0.9;
+}
+
+.groupe:active{
+    color: rgb(0, 0, 0);
+}
+
+
+#titre:active .images{
+    display: block;
+}
+
+Link>Button{
+    color: rgb(71,93,67);
+}

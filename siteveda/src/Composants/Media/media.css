@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+h1{
+    color: rgb(71,93,67);
+}
+
+.media{
+    margin: 0px 300px;
+    width: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
