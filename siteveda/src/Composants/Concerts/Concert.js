@@ -1,52 +1,60 @@
 import React from 'react';
 import './concert.css';
-import axios from 'axios';
-
-const concertReducer = (state,action) =>{
-    switch(action.type){
-        case "FETCH_INIT" : return{
-            ...state, isLoading : true, isError : false}
-        case "FETCH_SUCCESS" : return{
-            ...state, isLoading : false, isError : false, data : action.payload }
-        case "FETCH_FAIL" : return{
-            ...state, isLoading : false, isError : true}
-        default : throw new Error();    
-    }
-}
+import useAxios from 'axios-hooks';
+import { Alert, CircularProgress } from '@mui/material';
+import moment from 'moment';
 
 function Concert () {
 
-    const style = {"border" : "1px solid black", 
-    };
-
-    const [concert, dispatchConcert] = React.useReducer(concertReducer, {
-        data : [], isLoading : false, isError : false})
-    React.useEffect(()=>{
-        dispatchConcert({type : "FETCH_INIT"})
-        axios.get('http://localhost:4000/api/concerts')
-        .then((reponse)=>{
-            dispatchConcert({type: "FETCH_SUCCESS", payload : reponse.data});
-        }).catch(()=>{
-            dispatchConcert({type : "FETCH_FAIL"});
-        })
-    }, [])  
-
+    
+    const [{data, loading, error}] = useAxios({
+        url: "/futurconcerts",
+    }); 
+    const [{data : pastdata, loading : pastload, error : pasterror}] = useAxios({
+        url: "/pastconcerts",
+    }); 
+    
+    
     return(
         <div className='concert'>
-            <h1>Concerts</h1>
+            <h1>Upcoming concerts</h1>
             <table>
-                <tbody>
-                {concert.data.map(item=>(
-                        <tr key={item.id} style={style}>
-                            <td>{item.date}</td>
-                            <td>{item.groupe}</td>
-                            <td>{item.lieu}</td>
-                            <td>{item.ville}</td>
-                        </tr>
-                ))}
-                </tbody>
+                {loading && <CircularProgress/>}
+                {error && <Alert severity="error">Error somewhere!</Alert>}
+                {data && (
+                    <tbody>
+                    {data.map((concert)=> <Gig gig={concert} key={concert.id}/>
+                    )}
+                    </tbody>
+                )}   
+            </table>
+            <br />
+            <h1>Past concerts</h1>
+            <table>
+                {pastload && <CircularProgress/>}
+                {pasterror && <Alert severity="error">Error somewhere!</Alert>}
+                {pastdata && (
+                    <tbody>
+                    {pastdata.map((concert)=> <Gig gig={concert} key={concert.id}/>    
+                    )}
+                    </tbody>
+                )}   
             </table>
         </div>
+    )
+}
+
+
+const Gig = ({gig}) => {
+
+    return(
+        <tr>
+            <td>{(moment.unix(gig.date).format('dddd, DD/MM/YYYY, HH:mm'))}</td>
+            <td>{gig.groupe}</td>
+            <td>{gig.lieu}</td>
+            <td>{gig.ville}</td>
+        </tr>
+        
     )
 }
 

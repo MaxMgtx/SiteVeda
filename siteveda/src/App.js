@@ -11,9 +11,20 @@ import Lumens from './Composants/Projects/Lumens';
 import Ann from './Composants/Projects/Ann';
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
+import {configure} from 'axios-hooks';
+import Axios from 'axios';
 
 function App() {
-  
+
+  const axios = Axios.create({
+    baseURL: "http://localhost:4000/api",
+  })
+  const defaultOptions = {
+    useCache : false,
+  };
+  configure({
+    axios, defaultOptions
+  });
 
   return (
     <div className="app">

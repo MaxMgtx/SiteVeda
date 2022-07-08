@@ -6,14 +6,16 @@ function Contact () {
 
     const [mail, setMail] = useState();
     const [text, setText] = useState();
+    const [name, setName] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
    
-        const regexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        //const regexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        const regexp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
         if(mail.match(regexp)){
-            alert("ok")
-            sendMail(mail, text)
+            alert("ok");
+            //sendMail(mail, text)
         }else{
             alert("non")
         }   
@@ -21,7 +23,7 @@ function Contact () {
 
     const sendMail = (mail, text) => {
         console.log(mail, text);
-        axios.post('http://localhost:4000/api/emails', {text, mail});
+        axios.post('http://localhost:4000/api/emails', {name, text, mail});
     }
 
 
@@ -29,12 +31,16 @@ function Contact () {
         <div className='contact'>
             <h1>Contact</h1>
                 <form onSubmit={handleSubmit} >
+                    <div id='name'>
+                        <label htmlFor="">Your name : </label><br />
+                        <input type="name" id='name' required onChange={e=>{setName(e.target.value)}}/>
+                    </div>
                     <div id='email'>
-                        <label htmlFor="">Votre email : </label><br />
+                        <label htmlFor="">Your email : </label><br />
                         <input type="email" id='admail' required onChange={e=>{setMail(e.target.value)}}/>
                     </div>
                     <div id='msg'>
-                        <label htmlFor="">Votre message : </label><br />
+                        <label htmlFor="">Your message : </label><br />
                         <textarea name="text" id="text" cols="80" rows="10" required 
                         onChange={e=>{setText(e.target.value)}}></textarea>
                     </div>

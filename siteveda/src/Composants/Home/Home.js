@@ -7,8 +7,6 @@ function Home() {
         <div id='home'>
             
         </div>
-        <div>
-        </div>
     </div>
   )
 }

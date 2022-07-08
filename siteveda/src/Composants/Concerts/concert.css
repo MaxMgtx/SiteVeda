@@ -1,14 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
 
 .concert{
-    margin: 0px 300px;
-    width: auto;
+    margin: 100px 0px;
+    width: 100%;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     font-size: 18px;
 }
 
-td{
-    padding: 5px 30px 10px 0px; 
-
+tbody{
+    width: 100%;
 }
+table{
+    display: flexbox;
+    justify-content: space-between;
+    width: 100%;
+}
+td{ 
+    width: 25%;
+    padding: 10px 10px;
+    font-size: medium;
+}
+
